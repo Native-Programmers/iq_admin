@@ -105,7 +105,7 @@ class ProductsDataSource extends DataGridSource {
             DataGridCell<Widget>(
                 columnName: 'Qismat draw',
                 value: ElevatedButton(
-                  child: const Text('Submit for draw'),
+                  child: const Text('Edit Product'),
                   onPressed: () async {
                     final GlobalKey<FormState> _formKey =
                         GlobalKey<FormState>();
@@ -194,11 +194,11 @@ class ProductsDataSource extends DataGridSource {
                                       ),
                                     ],
                                   )),
-                              title:
-                                  const Center(child: Text('New Lucky Draw')),
+                              title: const Center(
+                                  child: Text('EDITING (enabled)')),
                               actions: <Widget>[
                                 ElevatedButton(
-                                  child: const Text('Add Qismat Draw'),
+                                  child: const Text('Complete Editing'),
                                   onPressed: () {
                                     if (_formKey.currentState!.validate()) {
                                       EasyLoading.show();

@@ -145,7 +145,7 @@ class _CategoriesState extends State<Categories> {
                     ),
                     InkWell(
                       onTap: () async {
-                        // uploadToStorage();
+                        uploadToStorage();
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -199,6 +199,7 @@ class _CategoriesState extends State<Categories> {
                             .add({
                           'name': _name.text,
                           'imageUrl': _imageUrl,
+                          'active': true,
                         }).then((value) {
                           EasyLoading.dismiss();
                           EasyLoading.showSuccess('Product Added Successfully');
