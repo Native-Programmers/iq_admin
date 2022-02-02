@@ -65,26 +65,6 @@ class _DrawerState extends State<Drawers> {
                   Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => const LuckyDraws(),
-                      ));
-                },
-                leading: const Icon(Icons.accessibility_sharp),
-                title: const Text('Lucky Draw'),
-                focusColor: Colors.white,
-                enableFeedback: true,
-                hoverColor: Colors.white,
-              ),
-            ),
-            const Divider(
-              height: 2,
-              color: Colors.transparent,
-            ),
-            Card(
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
                         builder: (context) => const Categories(),
                       ));
                 },

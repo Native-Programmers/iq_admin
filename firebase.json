@@ -10,7 +10,7 @@
   },
   "hosting": {
     "public": "build/web",
-    "site": "admin-qismatbazaar",
+    "site": "admin-iqimporter",
     "ignore": [
       "firebase.json",
       "**/.*",

@@ -3,7 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:qb_admin/admin/otp.dart';
 
-import 'admin_dash.dart';
+// import 'admin_dash.dart';
 
 class admin_Login extends StatefulWidget {
   static const String routeName = '/';
@@ -21,7 +21,7 @@ class admin_Login extends StatefulWidget {
 
 // ignore: camel_case_types
 class _admin_LoginState extends State<admin_Login> {
-  String dropdownValue = '+923371417699';
+  String dropdownValue = '+923044766916';
 
   @override
   Widget build(BuildContext context) {
@@ -33,17 +33,14 @@ class _admin_LoginState extends State<admin_Login> {
       child: Column(
         children: [
           Container(
+            height: 200,
+            width: 200,
             margin: const EdgeInsets.only(top: 65),
-            child: CircleAvatar(
-              backgroundColor: const Color(0xFF454E5F),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(500),
               child: Center(
-                child: SizedBox(
-                    height: 120,
-                    width: 130,
-                    child: Image.asset('assets/images/logo.png')),
+                child: Image.asset('assets/images/logo.png'),
               ),
-              maxRadius: 80,
-              minRadius: 80,
             ),
           ),
           const Divider(
@@ -130,15 +127,15 @@ class _admin_LoginState extends State<admin_Login> {
                       SizedBox(
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) =>
-                            //             OTP(phone: dropdownValue)));
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const dash_Board()));
+                                    builder: (context) =>
+                                        OTP(phone: dropdownValue)));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const dash_Board()));
                           },
                           child: SizedBox(
                             height: 50,

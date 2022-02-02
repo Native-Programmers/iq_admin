@@ -3,6 +3,8 @@
 //un-comment while building web application
 // import 'dart:html';
 
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -34,7 +36,7 @@ class dash_Board extends StatefulWidget {
 }
 
 class _dash_BoardState extends State<dash_Board> {
-  var dropdownValue = 'smartphone';
+  var dropdownValue = 'smartwatch';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -278,7 +280,7 @@ class _dash_BoardState extends State<dash_Board> {
                     ),
                     InkWell(
                       onTap: () async {
-                        // uploadToStorage();
+                        uploadToStorage();
                       },
                       child: Stack(
                         alignment: Alignment.center,
@@ -512,43 +514,44 @@ class _dash_BoardState extends State<dash_Board> {
         .getDownloadURL();
   }
 
-//   void uploadToStorage() {
-//     final date = DateTime.now();
-//     final path = '${date.toString()}';
-//     EasyLoading.show();
-//     uploadImage(onSelected: (file) {
-//       FirebaseStorage.instance
-//           .refFromURL('gs://qbazar-19c41.appspot.com/products')
-//           .child(path)
-//           .putBlob(file)
-//           .then((p0) {
-//         EasyLoading.dismiss();
+  void uploadToStorage() {
+    final date = DateTime.now();
+    final path = '${date.toString()}';
+    EasyLoading.show();
+    uploadImage(onSelected: (file) {
+      EasyLoading.dismiss();
+      FirebaseStorage.instance
+          .refFromURL('gs://qbazar-19c41.appspot.com/products')
+          .child(path)
+          .putBlob(file)
+          .then((p0) {
+        EasyLoading.dismiss();
 
-//         return downloadUrl(path).then((value) {
-//           EasyLoading.showSuccess('Image Uploaded');
-//           setState(() {
-//             imageUrl.add(value);
-//             print(imageUrl.toSet());
-//           });
-//         });
-//       }).onError((error, stackTrace) {
-//         EasyLoading.showError('Something went wrong');
-//         return Future.delayed(const Duration(milliseconds: 500), () {});
-//       });
-//     });
-//   }
-// //un-comment while building web application
+        return downloadUrl(path).then((value) {
+          EasyLoading.showSuccess('Image Uploaded');
+          setState(() {
+            imageUrl.add(value);
+            print(imageUrl.toSet());
+          });
+        });
+      }).onError((error, stackTrace) {
+        EasyLoading.showError('Something went wrong');
+        return Future.delayed(const Duration(milliseconds: 500), () {});
+      });
+    });
+  }
+//un-comment while building web application
 
-//   void uploadImage({required Function(File file) onSelected}) {
-//     final uploadInput = FileUploadInputElement()..accept = 'image/*';
-//     uploadInput.click();
-//     uploadInput.onChange.listen((event) {
-//       final file = uploadInput.files!.first;
-//       final reader = FileReader();
-//       reader.readAsDataUrl(file);
-//       reader.onLoadEnd.listen((event) {
-//         onSelected(file);
-//       });
-//     });
-//   }
+  void uploadImage({required Function(File file) onSelected}) {
+    final uploadInput = FileUploadInputElement()..accept = 'image/*';
+    uploadInput.click();
+    uploadInput.onChange.listen((event) {
+      final file = uploadInput.files!.first;
+      final reader = FileReader();
+      reader.readAsDataUrl(file);
+      reader.onLoadEnd.listen((event) {
+        onSelected(file);
+      });
+    });
+  }
 }

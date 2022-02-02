@@ -9,6 +9,7 @@ import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 String _imageUrl = '';
+TextEditingController _name = TextEditingController();
 
 class CategoryDataSource extends DataGridSource {
   BuildContext context;
@@ -39,15 +40,27 @@ class CategoryDataSource extends DataGridSource {
                           builder: (context) {
                             return StatefulBuilder(
                                 builder: (context, setState) {
-                              _imageUrl = e.imageUrl;
-                              TextEditingController _name =
-                                  TextEditingController(text: e.name);
                               Future<String> downloadUrl(String name) async {
                                 return FirebaseStorage.instance
                                     .refFromURL(
                                         'gs://qbazar-19c41.appspot.com/categories')
                                     .child(name)
                                     .getDownloadURL();
+                              }
+
+                              void uploadImage(
+                                  {required Function(File file) onSelected}) {
+                                final uploadInput = FileUploadInputElement()
+                                  ..accept = 'image/*';
+                                uploadInput.click();
+                                uploadInput.onChange.listen((event) {
+                                  final file = uploadInput.files!.first;
+                                  final reader = FileReader();
+                                  reader.readAsDataUrl(file);
+                                  reader.onLoadEnd.listen((event) {
+                                    onSelected(file);
+                                  });
+                                });
                               }
 
                               void uploadToStorage() {
@@ -201,17 +214,4 @@ class CategoryDataSource extends DataGridSource {
       );
     }).toList());
   }
-}
-
-void uploadImage({required Function(File file) onSelected}) {
-  final uploadInput = FileUploadInputElement()..accept = 'image/*';
-  uploadInput.click();
-  uploadInput.onChange.listen((event) {
-    final file = uploadInput.files!.first;
-    final reader = FileReader();
-    reader.readAsDataUrl(file);
-    reader.onLoadEnd.listen((event) {
-      onSelected(file);
-    });
-  });
 }
