@@ -1,23 +1,21 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:qb_admin/models/models.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:toggle_switch/toggle_switch.dart';
-import 'package:flutter_datetime_picker/flutter_datetime_picker.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class ProductsDataSource extends DataGridSource {
   BuildContext context;
-  TextEditingController _name = TextEditingController();
-  TextEditingController _desc = TextEditingController();
-  TextEditingController _price = TextEditingController();
   final CollectionReference _firebaseFirestore =
       FirebaseFirestore.instance.collection("products");
   ProductsDataSource(
       {required List<Product> productData, required this.context}) {
     _productData = productData.map<DataGridRow>((e) {
+      TextEditingController _name = new TextEditingController();
+      TextEditingController _desc = new TextEditingController();
+      TextEditingController _price = new TextEditingController();
       _name.text = e.name;
       _price.text = e.price.toString();
       _desc.text = e.desc;

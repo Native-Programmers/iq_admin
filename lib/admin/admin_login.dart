@@ -128,15 +128,15 @@ class _admin_LoginState extends State<admin_Login> {
                       SizedBox(
                         child: ElevatedButton(
                           onPressed: () {
-                            // Navigator.push(
-                            //     context,
-                            //     MaterialPageRoute(
-                            //         builder: (context) =>
-                            //             OTP(phone: dropdownValue)));
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => const dash_Board()));
+                                    builder: (context) =>
+                                        OTP(phone: dropdownValue)));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => const dash_Board()));
                           },
                           child: SizedBox(
                             height: 50,
