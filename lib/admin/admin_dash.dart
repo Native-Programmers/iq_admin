@@ -141,6 +141,17 @@ class _dash_BoardState extends State<dash_Board> {
                         ),
                       ),
                       GridColumn(
+                        columnName: 'Sub Category',
+                        label: Container(
+                          padding: const EdgeInsets.all(8.0),
+                          child: const Text(
+                            'SUBCATEGORY',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 20),
+                          ),
+                        ),
+                      ),
+                      GridColumn(
                           columnName: 'price',
                           label: Container(
                               padding: const EdgeInsets.all(8.0),
@@ -168,6 +179,15 @@ class _dash_BoardState extends State<dash_Board> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ))),
                       GridColumn(
+                          columnName: 'isPopular',
+                          label: Container(
+                              padding: const EdgeInsets.all(8.0),
+                              child: const Text(
+                                'Popular',
+                                style: TextStyle(
+                                    fontWeight: FontWeight.bold, fontSize: 20),
+                              ))),
+                      GridColumn(
                           columnName: 'isActive',
                           label: Container(
                               padding: const EdgeInsets.all(8.0),
@@ -177,11 +197,11 @@ class _dash_BoardState extends State<dash_Board> {
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ))),
                       GridColumn(
-                          columnName: 'Qismat draw',
+                          columnName: 'EDIT',
                           label: Container(
                               padding: const EdgeInsets.all(8.0),
                               child: const Text(
-                                'Qismat Draw',
+                                'EDIT',
                                 style: TextStyle(
                                     fontWeight: FontWeight.bold, fontSize: 20),
                               ))),

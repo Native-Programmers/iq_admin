@@ -6,6 +6,7 @@ class Product extends Equatable {
   final String name;
   final String category;
   final List imageUrl;
+  final String subCategory;
   final int price;
   final String desc;
   final bool isRecommended;
@@ -17,6 +18,7 @@ class Product extends Equatable {
     required this.name,
     required this.category,
     required this.imageUrl,
+    required this.subCategory,
     required this.price,
     required this.isRecommended,
     required this.isPopular,
@@ -25,20 +27,30 @@ class Product extends Equatable {
   });
 
   @override
-  List<Object?> get props =>
-      [uid, name, category, imageUrl, price, isRecommended, isPopular];
+  List<Object?> get props => [
+        uid,
+        name,
+        category,
+        imageUrl,
+        price,
+        isRecommended,
+        isPopular,
+        subCategory
+      ];
 
   static Product fromSnapshot(DocumentSnapshot snap) {
     Product product = Product(
-        uid: snap.id,
-        name: snap['name'],
-        category: snap['category'],
-        imageUrl: snap['imageUrl'],
-        price: snap['price'],
-        isRecommended: snap['isRecommended'],
-        isPopular: snap['isPopular'],
-        isActive: snap['isActive'],
-        desc: snap['desc']);
+      uid: snap.id,
+      name: snap['name'],
+      category: snap['category'],
+      imageUrl: snap['imageUrl'],
+      price: snap['price'],
+      isRecommended: snap['isRecommended'],
+      isPopular: snap['isPopular'],
+      isActive: snap['isActive'],
+      desc: snap['desc'],
+      subCategory: snap['subCategory'],
+    );
     return product;
   }
 
