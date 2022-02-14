@@ -12,7 +12,6 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:get/get.dart';
 import 'package:qb_admin/blocs/banners/banners_bloc.dart';
-import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 
 String _imageUrl = '';
 
@@ -217,7 +216,7 @@ class _BannersState extends State<Banners> {
 
   Future<String> downloadUrl(String name) async {
     return FirebaseStorage.instance
-        .refFromURL('gs://qbazar-19c41.appspot.com/Banners')
+        .refFromURL('gs://iqimporter-54321.appspot.com/banners')
         .child(name)
         .getDownloadURL();
   }
@@ -228,7 +227,7 @@ class _BannersState extends State<Banners> {
     EasyLoading.show();
     uploadImage(onSelected: (file) {
       FirebaseStorage.instance
-          .refFromURL('gs://qbazar-19c41.appspot.com/Banners')
+          .refFromURL('gs://iqimporter-54321.appspot.com/banners')
           .child(path)
           .putBlob(file)
           .then((p0) {

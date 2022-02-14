@@ -6,22 +6,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:qb_admin/admin/admin_screens/screens/subcategories.dart';
-import 'package:qb_admin/models/category_model.dart';
+import 'package:qb_admin/models/subcategories_model.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:toggle_switch/toggle_switch.dart';
 
 String _imageUrl = '';
 TextEditingController _name = TextEditingController();
 
-class CategoryDataSource extends DataGridSource {
+class SubCategoryDataSource extends DataGridSource {
   BuildContext context;
+  String uid;
 
   final CollectionReference _firebaseFirestore =
-      FirebaseFirestore.instance.collection("categories");
+      FirebaseFirestore.instance.collection("subcategories");
 
-  CategoryDataSource(
-      {required List<Categories> categoryData, required this.context}) {
-    _categoryData = categoryData
+  SubCategoryDataSource({
+    required List<SubCategories> subcategoryData,
+    required this.context,
+    required this.uid,
+  }) {
+    _subcategoryData = subcategoryData
         .map<DataGridRow>(
           (e) => DataGridRow(cells: [
             DataGridCell<Widget>(
@@ -155,17 +159,6 @@ class CategoryDataSource extends DataGridSource {
                     },
                   ),
                 )),
-            DataGridCell(
-                columnName: 'Sub Categories',
-                value: Center(
-                  child: ElevatedButton(
-                    child: const Text('Check Sub-Categories'),
-                    onPressed: () {
-                      Get.to(SubCategoriesScreen(uid: e.uid));
-                      // print(e.uid);
-                    },
-                  ),
-                )),
             DataGridCell<Widget>(
               columnName: 'activity',
               value: Center(
@@ -211,10 +204,10 @@ class CategoryDataSource extends DataGridSource {
         .toList();
   }
 
-  List<DataGridRow> _categoryData = [];
+  List<DataGridRow> _subcategoryData = [];
 
   @override
-  List<DataGridRow> get rows => _categoryData;
+  List<DataGridRow> get rows => _subcategoryData;
 
   @override
   DataGridRowAdapter buildRow(DataGridRow row) {

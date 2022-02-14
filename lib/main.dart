@@ -14,8 +14,10 @@ import 'package:url_strategy/url_strategy.dart';
 
 import 'blocs/banners/banners_bloc.dart';
 import 'blocs/category/category_bloc.dart';
+import 'blocs/subcategories/subcategory_bloc.dart';
 import 'config/app_router.dart';
 import 'repositories/product/product_repository.dart';
+import 'repositories/subcategories/subcategories_repository.dart';
 import 'services/AuthController.dart';
 
 Future<void> main() async {
@@ -89,6 +91,11 @@ class _AdminState extends State<Admin> with WidgetsBindingObserver {
               create: (_) => CategoryBloc(
                 categoryRepository: CategoryRepository(),
               )..add(LoadCategories()),
+            ),
+            BlocProvider(
+              create: (_) => SubCategoryBloc(
+                subcategoryRepository: SubCategoryRepository(),
+              )..add(LoadSubCategories()),
             ),
             BlocProvider(
               create: (_) => BannersBloc(

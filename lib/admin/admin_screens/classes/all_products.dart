@@ -174,13 +174,15 @@ class ProductsDataSource extends DataGridSource {
                         context: context,
                         builder: (context) {
                           return AlertDialog(
+                            backgroundColor: Colors.transparent,
+                            elevation: 0,
                             content: SpinKitChasingDots(
                               color: Colors.blue,
                             ),
                           );
                         });
                     FirebaseFirestore.instance
-                        .collection("collectionPath")
+                        .collection("products")
                         .doc(e.uid)
                         .update({
                       'name': _name.text,
@@ -192,6 +194,7 @@ class ProductsDataSource extends DataGridSource {
                     }).onError((error, stackTrace) {
                       EasyLoading.showError('Unable to update data');
                       Navigator.pop(context);
+                      print(error);
                     });
                   })),
         ],

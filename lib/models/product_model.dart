@@ -8,6 +8,9 @@ class Product extends Equatable {
   final List imageUrl;
   final String subCategory;
   final int price;
+  final int quantity;
+  final int discountedPrice;
+  final String srNo;
   final String desc;
   final bool isRecommended;
   final bool isPopular;
@@ -24,6 +27,9 @@ class Product extends Equatable {
     required this.isPopular,
     required this.isActive,
     required this.desc,
+    required this.srNo,
+    required this.quantity,
+    required this.discountedPrice,
   });
 
   @override
@@ -35,22 +41,27 @@ class Product extends Equatable {
         price,
         isRecommended,
         isPopular,
-        subCategory
+        subCategory,
+        quantity,
+        srNo,
+        discountedPrice,
       ];
 
   static Product fromSnapshot(DocumentSnapshot snap) {
     Product product = Product(
-      uid: snap.id,
-      name: snap['name'],
-      category: snap['category'],
-      imageUrl: snap['imageUrl'],
-      price: snap['price'],
-      isRecommended: snap['isRecommended'],
-      isPopular: snap['isPopular'],
-      isActive: snap['isActive'],
-      desc: snap['desc'],
-      subCategory: snap['subCategory'],
-    );
+        uid: snap.id,
+        name: snap['name'],
+        category: snap['category'],
+        imageUrl: snap['imageUrl'],
+        price: snap['price'],
+        isRecommended: snap['isRecommended'],
+        isPopular: snap['isPopular'],
+        isActive: snap['isActive'],
+        desc: snap['desc'],
+        subCategory: snap['subCategory'],
+        quantity: snap['quantity'],
+        srNo: snap['srNo'],
+        discountedPrice: snap['discount']);
     return product;
   }
 

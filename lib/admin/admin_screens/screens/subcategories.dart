@@ -1,5 +1,7 @@
 // import 'dart:html';
 
+// ignore_for_file: must_be_immutable, unused_element
+
 import 'dart:html';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,41 +10,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:qb_admin/admin/admin_screens/classes/all_categories.dart';
+import 'package:qb_admin/admin/admin_screens/classes/allsubcategories.dart';
+import 'package:qb_admin/blocs/subcategories/subcategory_bloc.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
-
-import '../../../../blocs/category/category_bloc.dart';
 
 String _imageUrl = '';
 List dumb = [];
 
-class Categories extends StatefulWidget {
-  const Categories({Key? key}) : super(key: key);
+class SubCategoriesScreen extends StatefulWidget {
+  SubCategoriesScreen({Key? key, required this.uid}) : super(key: key);
+  String uid;
 
   @override
-  _CategoriesState createState() => _CategoriesState();
+  _SubCategoriesScreenState createState() => _SubCategoriesScreenState();
 }
 
-class _CategoriesState extends State<Categories> {
+class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
-        title: const Text("Categories"),
+        title: const Text("SUB-CATEGORIES"),
         centerTitle: true,
         backgroundColor: Colors.brown,
       ),
-      body: BlocBuilder<CategoryBloc, CategoryState>(
+      body: BlocBuilder<SubCategoryBloc, SubCategoryState>(
         builder: (context, state) {
-          if (state is CategoryLoading) {
+          if (state is SubCategoryLoading) {
             return const Center(
               child: CircularProgressIndicator(),
             );
-          } else if (state is CategoryLoaded) {
+          } else if (state is SubCategoryLoaded) {
             return SfDataGrid(
-              source: CategoryDataSource(
-                  categoryData: state.categories, context: context),
+              source: SubCategoryDataSource(
+                uid: widget.uid,
+                subcategoryData: state.subcategories,
+                context: context,
+              ),
               columnWidthMode: ColumnWidthMode.fill,
               gridLinesVisibility: GridLinesVisibility.both,
               sortingGestureType: SortingGestureType.tap,
@@ -82,17 +87,6 @@ class _CategoriesState extends State<Categories> {
                   ),
                 ),
                 GridColumn(
-                  columnName: 'subcategories',
-                  label: Container(
-                    padding: const EdgeInsets.all(8.0),
-                    child: const Text(
-                      'SUB CATEGORIES',
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                    ),
-                  ),
-                ),
-                GridColumn(
                   columnName: 'Activity',
                   label: Container(
                     padding: const EdgeInsets.all(8.0),
@@ -120,9 +114,9 @@ class _CategoriesState extends State<Categories> {
         onPressed: () {
           final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
           TextEditingController _name = TextEditingController();
-          add_subcategory_popup(context, _formKey, _name);
+          add_category_popup(context, _formKey, _name);
         },
-        label: const Text("Add New Category"),
+        label: const Text("Add New Sub-Category"),
         icon: const FaIcon(FontAwesomeIcons.ad),
         backgroundColor: Colors.brown,
       ),
@@ -130,7 +124,7 @@ class _CategoriesState extends State<Categories> {
   }
 
   // ignore: non_constant_identifier_names
-  Future<void> add_subcategory_popup(
+  Future<void> add_category_popup(
     BuildContext context,
     GlobalKey<FormState> _formKey,
     TextEditingController _name,
@@ -191,25 +185,26 @@ class _CategoriesState extends State<Categories> {
                   ],
                 ),
               ),
-              title: const Text('New Category'),
+              title: const Text('New SubCategory'),
               actions: <Widget>[
                 ElevatedButton(
-                  child: const Text('Add Category'),
+                  child: const Text('Add SubCategory'),
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
                       if (_imageUrl.isEmpty) {
                         const ScaffoldMessenger(
                           child: SnackBar(
-                            content: Text('Please add sub-category image'),
+                            content: Text('Please add subcategory image'),
                           ),
                         );
                       } else {
                         EasyLoading.show();
                         FirebaseFirestore.instance
-                            .collection('subcategories')
+                            .collection('categories')
                             .add({
                           'name': _name.text,
                           'imageUrl': _imageUrl,
+                          'uid': widget.uid,
                           'active': true,
                         }).then((value) {
                           EasyLoading.dismiss();
@@ -237,7 +232,7 @@ class _CategoriesState extends State<Categories> {
 
   Future<String> downloadUrl(String name) async {
     return FirebaseStorage.instance
-        .refFromURL('gs://iqimporter-54321.appspot.com/categories')
+        .refFromURL('gs://iqimporter-54321.appspot.com/subcategories')
         .child(name)
         .getDownloadURL();
   }
@@ -248,7 +243,7 @@ class _CategoriesState extends State<Categories> {
     EasyLoading.show();
     uploadImage(onSelected: (file) {
       FirebaseStorage.instance
-          .refFromURL('gs://iqimporter-54321.appspot.com/categories')
+          .refFromURL('gs://iqimporter-54321.appspot.com/subcategories')
           .child(path)
           .putBlob(file)
           .then((p0) {

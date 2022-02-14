@@ -228,11 +228,13 @@ class _dash_BoardState extends State<dash_Board> {
           TextEditingController _name = TextEditingController();
           TextEditingController _price = TextEditingController();
           TextEditingController _desc = TextEditingController();
+          TextEditingController _discount = TextEditingController();
+          TextEditingController _quantity = TextEditingController();
           final String category;
           bool isRecommended = false;
           bool isPopular = false;
           return await add_product_popup(context, _formKey, _name, _price,
-              _desc, isPopular, isRecommended);
+              _discount, _quantity, _desc, isPopular, isRecommended);
         },
         label: const Text('Add Product'),
         icon: const Icon(Icons.add),
@@ -246,6 +248,8 @@ class _dash_BoardState extends State<dash_Board> {
       GlobalKey<FormState> _formKey,
       TextEditingController _name,
       TextEditingController _price,
+      TextEditingController _discount,
+      TextEditingController _quantity,
       TextEditingController _desc,
       bool isPopular,
       bool isRecommended) {
@@ -294,9 +298,29 @@ class _dash_BoardState extends State<dash_Board> {
                         hintText: "Description",
                       ),
                     ),
-                    const Divider(
-                      height: 15,
-                      color: Colors.transparent,
+                    TextFormField(
+                      controller: _discount,
+                      validator: (value) {
+                        return value!.isNotEmpty ? null : "Enter actual price";
+                      },
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                      ],
+                      decoration: const InputDecoration(
+                        hintText: "Full Price",
+                      ),
+                    ),
+                    TextFormField(
+                      controller: _discount,
+                      validator: (value) {
+                        return value!.isNotEmpty ? null : "Enter Quantity";
+                      },
+                      inputFormatters: [
+                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                      ],
+                      decoration: const InputDecoration(
+                        hintText: "Total Quantity",
+                      ),
                     ),
                     InkWell(
                       onTap: () async {
