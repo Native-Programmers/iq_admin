@@ -9,6 +9,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qb_admin/admin/admin_screens/classes/allsubcategories.dart';
 import 'package:qb_admin/blocs/subcategories/subcategory_bloc.dart';
@@ -18,8 +19,10 @@ String _imageUrl = '';
 List dumb = [];
 
 class SubCategoriesScreen extends StatefulWidget {
-  SubCategoriesScreen({Key? key, required this.uid}) : super(key: key);
+  SubCategoriesScreen({Key? key, required this.uid, required this.name})
+      : super(key: key);
   String uid;
+  String name;
 
   @override
   _SubCategoriesScreenState createState() => _SubCategoriesScreenState();
@@ -28,21 +31,27 @@ class SubCategoriesScreen extends StatefulWidget {
 class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      appBar: AppBar(
-        title: const Text("SUB-CATEGORIES"),
-        centerTitle: true,
-        backgroundColor: Colors.brown,
-      ),
-      body: BlocBuilder<SubCategoryBloc, SubCategoryState>(
-        builder: (context, state) {
-          if (state is SubCategoryLoading) {
-            return const Center(
-              child: CircularProgressIndicator(),
-            );
-          } else if (state is SubCategoryLoaded) {
-            return SfDataGrid(
+    return BlocBuilder<SubCategoryBloc, SubCategoryState>(
+      builder: (context, state) {
+        if (state is SubCategoryLoading) {
+          return Scaffold(
+            backgroundColor: Colors.black,
+            body: Center(
+              child: SpinKitFoldingCube(
+                color: Colors.white,
+              ),
+            ),
+          );
+        } else if (state is SubCategoryLoaded) {
+          return Scaffold(
+            floatingActionButtonLocation:
+                FloatingActionButtonLocation.centerFloat,
+            appBar: AppBar(
+              title: Text("SUB-CATEGORIES : ${widget.name.toUpperCase()}"),
+              centerTitle: true,
+              backgroundColor: Colors.brown,
+            ),
+            body: SfDataGrid(
               source: SubCategoryDataSource(
                 uid: widget.uid,
                 subcategoryData: state.subcategories,
@@ -98,28 +107,28 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                   ),
                 ),
               ],
-            );
-          } else {
-            return Center(
-              child: Text(
-                'Please Check your connection',
-                style: Theme.of(context).textTheme.headline6!.copyWith(
-                    fontWeight: FontWeight.bold, color: Colors.grey[600]),
-              ),
-            );
-          }
-        },
-      ),
-      floatingActionButton: FloatingActionButton.extended(
-        onPressed: () {
-          final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-          TextEditingController _name = TextEditingController();
-          add_category_popup(context, _formKey, _name);
-        },
-        label: const Text("Add New Sub-Category"),
-        icon: const FaIcon(FontAwesomeIcons.ad),
-        backgroundColor: Colors.brown,
-      ),
+            ),
+            floatingActionButton: FloatingActionButton.extended(
+              onPressed: () {
+                final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+                TextEditingController _name = TextEditingController();
+                add_category_popup(context, _formKey, _name);
+              },
+              label: const Text("Add New Sub-Category"),
+              icon: const FaIcon(FontAwesomeIcons.ad),
+              backgroundColor: Colors.brown,
+            ),
+          );
+        } else {
+          return Center(
+            child: Text(
+              'Please Check your connection',
+              style: Theme.of(context).textTheme.headline6!.copyWith(
+                  fontWeight: FontWeight.bold, color: Colors.grey[600]),
+            ),
+          );
+        }
+      },
     );
   }
 
@@ -200,7 +209,7 @@ class _SubCategoriesScreenState extends State<SubCategoriesScreen> {
                       } else {
                         EasyLoading.show();
                         FirebaseFirestore.instance
-                            .collection('categories')
+                            .collection('subcategories')
                             .add({
                           'name': _name.text,
                           'imageUrl': _imageUrl,

@@ -161,7 +161,10 @@ class CategoryDataSource extends DataGridSource {
                   child: ElevatedButton(
                     child: const Text('Check Sub-Categories'),
                     onPressed: () {
-                      Get.to(SubCategoriesScreen(uid: e.uid));
+                      Get.to(SubCategoriesScreen(
+                        uid: e.uid,
+                        name: e.name,
+                      ));
                       // print(e.uid);
                     },
                   ),

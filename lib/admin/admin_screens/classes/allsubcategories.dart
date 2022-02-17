@@ -26,6 +26,7 @@ class SubCategoryDataSource extends DataGridSource {
     required this.uid,
   }) {
     _subcategoryData = subcategoryData
+        .where((e) => e.id == uid)
         .map<DataGridRow>(
           (e) => DataGridRow(cells: [
             DataGridCell<Widget>(

@@ -7,11 +7,11 @@ class Product extends Equatable {
   final String category;
   final List imageUrl;
   final String subCategory;
+  final String srNo;
+  final String desc;
   final int price;
   final int quantity;
   final int discountedPrice;
-  final String srNo;
-  final String desc;
   final bool isRecommended;
   final bool isPopular;
   final bool isActive;
@@ -58,7 +58,7 @@ class Product extends Equatable {
         isPopular: snap['isPopular'],
         isActive: snap['isActive'],
         desc: snap['desc'],
-        subCategory: snap['subCategory'],
+        subCategory: snap['subcategory'],
         quantity: snap['quantity'],
         srNo: snap['srNo'],
         discountedPrice: snap['discount']);

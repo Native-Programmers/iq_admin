@@ -454,6 +454,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "0.18.2"
+  flutter_image_compress:
+    dependency: transitive
+    description:
+      name: flutter_image_compress
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.1.0"
   flutter_launch:
     dependency: "direct main"
     description:
@@ -658,6 +665,20 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "3.1.1"
+  image_compression:
+    dependency: transitive
+    description:
+      name: image_compression
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.3"
+  image_compression_flutter:
+    dependency: "direct main"
+    description:
+      name: image_compression_flutter
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.2"
   image_picker:
     dependency: "direct main"
     description:
@@ -707,6 +728,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.7.0"
+  mime:
+    dependency: transitive
+    description:
+      name: mime
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "1.0.1"
   nested:
     dependency: transitive
     description:

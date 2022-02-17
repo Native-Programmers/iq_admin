@@ -1,7 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:qb_admin/admin/admin_dash.dart';
+import 'package:qb_admin/admin/otp.dart';
+
+import 'admin_dash.dart';
 
 // import 'admin_dash.dart';
 
@@ -133,9 +135,11 @@ class _admin_LoginState extends State<admin_Login> {
                             //         builder: (context) =>
                             //             OTP(phone: dropdownValue)));
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) => const dash_Board()));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const dash_Board(),
+                              ),
+                            );
                           },
                           child: SizedBox(
                             height: 50,

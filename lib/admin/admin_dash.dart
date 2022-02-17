@@ -12,6 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
+import 'package:image_compression_flutter/image_compression_flutter.dart';
 import 'package:qb_admin/admin/admin_screens/classes/all_products.dart';
 import 'package:qb_admin/blocs/products/products_bloc.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
@@ -36,7 +37,8 @@ class dash_Board extends StatefulWidget {
 }
 
 class _dash_BoardState extends State<dash_Board> {
-  var dropdownValue = 'smartwatch';
+  var dropdownValue = 'HBYulA0r0ygV3DCK6VBt';
+  var dropdown = 'SuER31f83CN72FcDSlYN';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -110,102 +112,110 @@ class _dash_BoardState extends State<dash_Board> {
                     child: CircularProgressIndicator(),
                   );
                 } else if (state is ProductLoaded) {
-                  return SfDataGrid(
-                    source: ProductsDataSource(
-                        productData: state.products, context: context),
-                    columnWidthMode: ColumnWidthMode.fill,
-                    gridLinesVisibility: GridLinesVisibility.both,
-                    sortingGestureType: SortingGestureType.tap,
-                    allowTriStateSorting: true,
-                    columns: <GridColumn>[
-                      GridColumn(
-                        columnName: 'name',
-                        label: Container(
-                          padding: const EdgeInsets.all(16.0),
-                          child: const Text(
-                            'Name',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                  return SingleChildScrollView(
+                    child: SfDataGrid(
+                      source: ProductsDataSource(
+                          productData: state.products, context: context),
+                      columnWidthMode: ColumnWidthMode.fill,
+                      gridLinesVisibility: GridLinesVisibility.both,
+                      sortingGestureType: SortingGestureType.tap,
+                      allowTriStateSorting: true,
+                      columns: <GridColumn>[
+                        GridColumn(
+                          columnName: 'name',
+                          label: Container(
+                            padding: const EdgeInsets.all(16.0),
+                            child: const Text(
+                              'Name',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
                           ),
                         ),
-                      ),
-                      GridColumn(
-                        columnName: 'category',
-                        label: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: const Text(
-                            'Category',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                        GridColumn(
+                          columnName: 'category',
+                          label: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            child: const Text(
+                              'Category',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
                           ),
                         ),
-                      ),
-                      GridColumn(
-                        columnName: 'Sub Category',
-                        label: Container(
-                          padding: const EdgeInsets.all(8.0),
-                          child: const Text(
-                            'SUBCATEGORY',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold, fontSize: 20),
+                        GridColumn(
+                          columnName: 'Sub Category',
+                          label: Container(
+                            padding: const EdgeInsets.all(8.0),
+                            child: const Text(
+                              'SUBCATEGORY',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.bold, fontSize: 20),
+                            ),
                           ),
                         ),
-                      ),
-                      GridColumn(
-                          columnName: 'price',
-                          label: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                'Price (PKR)',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ))),
-                      GridColumn(
-                          columnName: 'desc',
-                          label: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                'Description',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ))),
-                      GridColumn(
-                          columnName: 'isRecommended',
-                          label: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                'Recommended',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ))),
-                      GridColumn(
-                          columnName: 'isPopular',
-                          label: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                'Popular',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ))),
-                      GridColumn(
-                          columnName: 'isActive',
-                          label: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                'Availability Status',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ))),
-                      GridColumn(
-                          columnName: 'EDIT',
-                          label: Container(
-                              padding: const EdgeInsets.all(8.0),
-                              child: const Text(
-                                'EDIT',
-                                style: TextStyle(
-                                    fontWeight: FontWeight.bold, fontSize: 20),
-                              ))),
-                    ],
+                        GridColumn(
+                            columnName: 'price',
+                            label: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Price (PKR)',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ))),
+                        GridColumn(
+                            columnName: 'desc',
+                            label: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Description',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ))),
+                        GridColumn(
+                            columnName: 'isRecommended',
+                            label: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Recommended',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ))),
+                        GridColumn(
+                            columnName: 'isPopular',
+                            label: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Popular',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ))),
+                        GridColumn(
+                            columnName: 'isActive',
+                            label: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'Availability Status',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ))),
+                        GridColumn(
+                            columnName: 'EDIT',
+                            label: Container(
+                                padding: const EdgeInsets.all(8.0),
+                                child: const Text(
+                                  'EDIT',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 20),
+                                ))),
+                      ],
+                    ),
                   );
                 } else {
                   return Center(
@@ -230,11 +240,21 @@ class _dash_BoardState extends State<dash_Board> {
           TextEditingController _desc = TextEditingController();
           TextEditingController _discount = TextEditingController();
           TextEditingController _quantity = TextEditingController();
+          TextEditingController _srNo = TextEditingController();
           final String category;
           bool isRecommended = false;
           bool isPopular = false;
-          return await add_product_popup(context, _formKey, _name, _price,
-              _discount, _quantity, _desc, isPopular, isRecommended);
+          return await add_product_popup(
+              context: context,
+              formKey: _formKey,
+              name: _name,
+              price: _price,
+              discount: _discount,
+              quantity: _quantity,
+              srNo: _srNo,
+              desc: _desc,
+              isPopular: isPopular,
+              isRecommended: isRecommended);
         },
         label: const Text('Add Product'),
         icon: const Icon(Icons.add),
@@ -244,265 +264,364 @@ class _dash_BoardState extends State<dash_Board> {
 
   // ignore: non_constant_identifier_names
   Future<void> add_product_popup(
-      BuildContext context,
-      GlobalKey<FormState> _formKey,
-      TextEditingController _name,
-      TextEditingController _price,
-      TextEditingController _discount,
-      TextEditingController _quantity,
-      TextEditingController _desc,
-      bool isPopular,
-      bool isRecommended) {
+      {required BuildContext context,
+      required GlobalKey<FormState> formKey,
+      required TextEditingController name,
+      required TextEditingController price,
+      required TextEditingController discount,
+      required TextEditingController quantity,
+      required TextEditingController desc,
+      required TextEditingController srNo,
+      required bool isPopular,
+      required bool isRecommended}) {
     return showDialog(
         context: context,
         builder: (context) {
           return StatefulBuilder(builder: (context, setState) {
             return AlertDialog(
               content: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    ...imageUrl.map((items) {
-                      return Text(items);
-                    }).toList(),
-                    TextFormField(
-                      controller: _name,
-                      validator: (value) {
-                        return value!.isNotEmpty ? null : "Enter Product Name";
-                      },
-                      decoration: const InputDecoration(
-                        hintText: "Name",
-                      ),
-                    ),
-                    TextFormField(
-                      controller: _price,
-                      validator: (value) {
-                        return value!.isNotEmpty ? null : "Enter price";
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-                      ],
-                      decoration: const InputDecoration(
-                        hintText: "Price",
-                      ),
-                    ),
-                    TextFormField(
-                      controller: _desc,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      validator: (value) {
-                        return value!.isNotEmpty ? null : "Enter description";
-                      },
-                      decoration: const InputDecoration(
-                        hintText: "Description",
-                      ),
-                    ),
-                    TextFormField(
-                      controller: _discount,
-                      validator: (value) {
-                        return value!.isNotEmpty ? null : "Enter actual price";
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-                      ],
-                      decoration: const InputDecoration(
-                        hintText: "Full Price",
-                      ),
-                    ),
-                    TextFormField(
-                      controller: _discount,
-                      validator: (value) {
-                        return value!.isNotEmpty ? null : "Enter Quantity";
-                      },
-                      inputFormatters: [
-                        FilteringTextInputFormatter.allow(RegExp('[0-9]')),
-                      ],
-                      decoration: const InputDecoration(
-                        hintText: "Total Quantity",
-                      ),
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        uploadToStorage();
-                      },
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border(),
-                              color: Colors.blue,
-                              borderRadius: BorderRadius.circular(5.00),
-                            ),
-                            height: 100,
-                            width: double.infinity,
-                          ),
-                          Center(
-                              child: Column(
-                            children: [
-                              SizedBox(
-                                  height: 50,
-                                  width: double.infinity,
-                                  child:
-                                      Image.asset('assets/images/upload.png')),
-                              const Text(
-                                'Drop Image Here',
-                                style: TextStyle(
-                                    fontSize: 10, color: Colors.white),
-                              ),
-                            ],
-                          )),
-                        ],
-                      ),
-                    ),
-                    StreamBuilder<QuerySnapshot>(
-                      stream: FirebaseFirestore.instance
-                          .collection('categories')
-                          .snapshots(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<QuerySnapshot> snapshot) {
-                        if (!snapshot.hasData) {
-                          return const Center(
-                            child: Text(
-                              'Loading...',
-                              style: TextStyle(
-                                color: Colors.grey,
-                                fontSize: (kIsWeb ? 16 : 12),
-                              ),
-                            ),
-                          );
-                        }
-                        return Container(
-                          decoration: BoxDecoration(
-                            border: Border.all(color: Colors.black),
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(30)),
-                          ),
-                          margin: const EdgeInsets.symmetric(
-                            vertical: 10.0,
-                            horizontal: 25,
-                          ),
-                          padding: const EdgeInsets.all(10.0),
-                          width: 250,
-                          child: DropdownButtonHideUnderline(
-                            child: DropdownButton<String>(
-                              isDense: true,
-                              isExpanded: false,
-                              hint: const Text("Select"),
-                              value: dropdownValue,
-                              icon: const Icon(
-                                Icons.arrow_drop_down_circle,
-                                color: Colors.blue,
-                              ),
-                              onChanged: (String? newValue) {
-                                setState(() {
-                                  dropdownValue = newValue.toString();
-                                });
-                              },
-                              items: snapshot.data!.docs.map((map) {
-                                return DropdownMenuItem<String>(
-                                  value: map["name"].toString(),
-                                  child: Row(
-                                    children: [
-                                      SizedBox(
-                                          height: 40,
-                                          width: 50,
-                                          child:
-                                              Image.network(map["imageUrl"])),
-                                      Text(
-                                        map["name"],
-                                        style: const TextStyle(
-                                          color: Colors.black,
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-                              }).toList(),
-                            ),
-                          ),
-                        );
-                      },
-                    ),
-                    const Divider(
-                      height: 15,
-                      color: Colors.transparent,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                key: formKey,
+                child: SingleChildScrollView(
+                  child: SizedBox(
+                    width: 350,
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
                       children: [
-                        Column(
-                          children: [
-                            const Text("is Popular"),
-                            ToggleSwitch(
-                              minWidth: 40.0,
-                              minHeight: 35.0,
-                              initialLabelIndex: 0,
-                              cornerRadius: 20.0,
-                              activeFgColor: Colors.white,
-                              inactiveBgColor: Colors.grey,
-                              inactiveFgColor: Colors.white,
-                              totalSwitches: 2,
-                              icons: const [
-                                Icons.cancel,
-                                Icons.done,
-                              ],
-                              iconSize: 30.0,
-                              activeBgColors: const [
-                                [Colors.red, Colors.redAccent],
-                                [Colors.green, Colors.greenAccent]
-                              ],
-                              animate:
-                                  true, // with just animate set to true, default curve = Curves.easeIn
-                              curve: Curves
-                                  .bounceInOut, // animate must be set to true when using custom curve
-                              onToggle: (index) {
-                                if (index == 0) {
-                                  isPopular = true;
-                                } else {
-                                  isPopular = false;
-                                }
-                              },
-                            ),
-                          ],
+                        ...imageUrl.map((items) {
+                          return Text(items);
+                        }).toList(),
+                        TextFormField(
+                          controller: name,
+                          validator: (value) {
+                            return value!.isNotEmpty
+                                ? null
+                                : "Enter Product Name";
+                          },
+                          decoration: const InputDecoration(
+                            hintText: "Name",
+                          ),
                         ),
-                        Column(
+                        TextFormField(
+                          controller: price,
+                          validator: (value) {
+                            return value!.isNotEmpty ? null : "Enter price";
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                          ],
+                          decoration: const InputDecoration(
+                            hintText: "Price",
+                          ),
+                        ),
+                        TextFormField(
+                          controller: desc,
+                          keyboardType: TextInputType.multiline,
+                          maxLines: null,
+                          validator: (value) {
+                            return value!.isNotEmpty
+                                ? null
+                                : "Enter description";
+                          },
+                          decoration: const InputDecoration(
+                            hintText: "Description",
+                          ),
+                        ),
+                        TextFormField(
+                          controller: discount,
+                          validator: (value) {
+                            return value!.isNotEmpty
+                                ? null
+                                : "Enter actual price";
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                          ],
+                          decoration: const InputDecoration(
+                            hintText: "Full Price",
+                          ),
+                        ),
+                        TextFormField(
+                          controller: quantity,
+                          validator: (value) {
+                            return value!.isNotEmpty ? null : "Enter Quantity";
+                          },
+                          inputFormatters: [
+                            FilteringTextInputFormatter.allow(RegExp('[0-9]')),
+                          ],
+                          decoration: const InputDecoration(
+                            hintText: "Total Quantity",
+                          ),
+                        ),
+                        TextFormField(
+                          controller: srNo,
+                          validator: (value) {
+                            return value!.isNotEmpty ? null : "Enter Sr No";
+                          },
+                          decoration: const InputDecoration(
+                            hintText: "Serail No.",
+                          ),
+                        ),
+                        const Divider(
+                          height: 10,
+                          color: Colors.transparent,
+                        ),
+                        InkWell(
+                          onTap: () async {
+                            uploadToStorage();
+                          },
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              Container(
+                                decoration: BoxDecoration(
+                                  border: Border(),
+                                  color: Colors.blue,
+                                  borderRadius: BorderRadius.circular(5.00),
+                                ),
+                                height: 100,
+                                width: double.infinity,
+                              ),
+                              Center(
+                                  child: Column(
+                                children: [
+                                  SizedBox(
+                                      height: 50,
+                                      width: double.infinity,
+                                      child: Image.asset(
+                                          'assets/images/upload.png')),
+                                  const Text(
+                                    'Drop Image Here',
+                                    style: TextStyle(
+                                        fontSize: 10, color: Colors.white),
+                                  ),
+                                ],
+                              )),
+                            ],
+                          ),
+                        ),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection('categories')
+                              .snapshots(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                child: Text(
+                                  'Loading...',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: (kIsWeb ? 16 : 12),
+                                  ),
+                                ),
+                              );
+                            }
+                            return Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(30)),
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 25,
+                              ),
+                              padding: const EdgeInsets.all(10.0),
+                              width: 250,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  isDense: true,
+                                  isExpanded: false,
+                                  hint: const Text("Select"),
+                                  value: dropdownValue,
+                                  icon: const Icon(
+                                    Icons.arrow_drop_down_circle,
+                                    color: Colors.blue,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdownValue = newValue.toString();
+                                    });
+                                  },
+                                  items: snapshot.data!.docs.map((map) {
+                                    return DropdownMenuItem<String>(
+                                      value: map.id,
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                              height: 40,
+                                              width: 50,
+                                              child: Image.network(
+                                                  map["imageUrl"])),
+                                          Text(
+                                            map["name"],
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        const Divider(
+                          height: 15,
+                          color: Colors.transparent,
+                        ),
+                        StreamBuilder<QuerySnapshot>(
+                          stream: FirebaseFirestore.instance
+                              .collection('subcategories')
+                              .where('uid', isEqualTo: dropdownValue)
+                              .snapshots(),
+                          builder: (BuildContext context,
+                              AsyncSnapshot<QuerySnapshot> snapshot) {
+                            if (!snapshot.hasData) {
+                              return const Center(
+                                child: Text(
+                                  'Loading...',
+                                  style: TextStyle(
+                                    color: Colors.grey,
+                                    fontSize: (kIsWeb ? 16 : 12),
+                                  ),
+                                ),
+                              );
+                            }
+                            return Container(
+                              decoration: BoxDecoration(
+                                border: Border.all(color: Colors.black),
+                                borderRadius:
+                                    const BorderRadius.all(Radius.circular(30)),
+                              ),
+                              margin: const EdgeInsets.symmetric(
+                                vertical: 10.0,
+                                horizontal: 25,
+                              ),
+                              padding: const EdgeInsets.all(10.0),
+                              width: 250,
+                              child: DropdownButtonHideUnderline(
+                                child: DropdownButton<String>(
+                                  isDense: true,
+                                  isExpanded: false,
+                                  hint: const Text("Select"),
+                                  value: dropdown,
+                                  icon: const Icon(
+                                    Icons.arrow_drop_down_circle,
+                                    color: Colors.blue,
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      dropdown = newValue.toString();
+                                    });
+                                  },
+                                  items: snapshot.data!.docs.map((map) {
+                                    return DropdownMenuItem<String>(
+                                      value: map.id.toString(),
+                                      child: Row(
+                                        children: [
+                                          SizedBox(
+                                              height: 40,
+                                              width: 50,
+                                              child: Image.network(
+                                                  map["imageUrl"])),
+                                          Text(
+                                            map["name"],
+                                            style: const TextStyle(
+                                              color: Colors.black,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
+                        const Divider(
+                          height: 15,
+                          color: Colors.transparent,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            const Text("isRecommended"),
-                            ToggleSwitch(
-                              minWidth: 40.0,
-                              minHeight: 35.0,
-                              initialLabelIndex: 0,
-                              cornerRadius: 20.0,
-                              activeFgColor: Colors.white,
-                              inactiveBgColor: Colors.grey,
-                              inactiveFgColor: Colors.white,
-                              totalSwitches: 2,
-                              icons: const [
-                                Icons.cancel,
-                                Icons.done,
+                            Column(
+                              children: [
+                                const Text("is Popular"),
+                                ToggleSwitch(
+                                  minWidth: 40.0,
+                                  minHeight: 35.0,
+                                  initialLabelIndex: 0,
+                                  cornerRadius: 20.0,
+                                  activeFgColor: Colors.white,
+                                  inactiveBgColor: Colors.grey,
+                                  inactiveFgColor: Colors.white,
+                                  totalSwitches: 2,
+                                  icons: const [
+                                    Icons.cancel,
+                                    Icons.done,
+                                  ],
+                                  iconSize: 30.0,
+                                  activeBgColors: const [
+                                    [Colors.red, Colors.redAccent],
+                                    [Colors.green, Colors.greenAccent]
+                                  ],
+                                  animate:
+                                      true, // with just animate set to true, default curve = Curves.easeIn
+                                  curve: Curves
+                                      .bounceInOut, // animate must be set to true when using custom curve
+                                  onToggle: (index) {
+                                    if (index == 0) {
+                                      isPopular = true;
+                                    } else {
+                                      isPopular = false;
+                                    }
+                                  },
+                                ),
                               ],
-                              iconSize: 30.0,
-                              activeBgColors: const [
-                                [Colors.red, Colors.redAccent],
-                                [Colors.green, Colors.greenAccent]
+                            ),
+                            Column(
+                              children: [
+                                const Text("isRecommended"),
+                                ToggleSwitch(
+                                  minWidth: 40.0,
+                                  minHeight: 35.0,
+                                  initialLabelIndex: 0,
+                                  cornerRadius: 20.0,
+                                  activeFgColor: Colors.white,
+                                  inactiveBgColor: Colors.grey,
+                                  inactiveFgColor: Colors.white,
+                                  totalSwitches: 2,
+                                  icons: const [
+                                    Icons.cancel,
+                                    Icons.done,
+                                  ],
+                                  iconSize: 30.0,
+                                  activeBgColors: const [
+                                    [Colors.red, Colors.redAccent],
+                                    [Colors.green, Colors.greenAccent]
+                                  ],
+                                  animate: true,
+                                  curve: Curves.bounceInOut,
+                                  onToggle: (index) {
+                                    if (index == 0) {
+                                      isRecommended = true;
+                                    } else {
+                                      isRecommended = false;
+                                    }
+                                  },
+                                ),
                               ],
-                              animate: true,
-                              curve: Curves.bounceInOut,
-                              onToggle: (index) {
-                                if (index == 0) {
-                                  isRecommended = true;
-                                } else {
-                                  isRecommended = false;
-                                }
-                              },
                             ),
                           ],
                         ),
                       ],
                     ),
-                  ],
+                  ),
                 ),
               ),
               title: const Text('Product Details'),
@@ -510,7 +629,7 @@ class _dash_BoardState extends State<dash_Board> {
                 ElevatedButton(
                   child: const Text('Submit Product'),
                   onPressed: () {
-                    if (_formKey.currentState!.validate()) {
+                    if (formKey.currentState!.validate()) {
                       if (imageUrl.isEmpty) {
                         const ScaffoldMessenger(
                           child: SnackBar(
@@ -521,9 +640,13 @@ class _dash_BoardState extends State<dash_Board> {
                         EasyLoading.show();
                         FirebaseFirestore.instance.collection('products').add({
                           'category': dropdownValue.toString(),
-                          'desc': _desc.text,
-                          'name': _name.text,
-                          'price': int.parse(_price.text),
+                          'subcategory': dropdown.toString(),
+                          'desc': desc.text,
+                          'name': name.text,
+                          'price': int.parse(price.text),
+                          'quantity': int.parse(quantity.text),
+                          'discount': int.parse(discount.text),
+                          'srNo': srNo.text,
                           'imageUrl': imageUrl,
                           'isActive': true,
                           'isRecommended': isRecommended,
@@ -533,9 +656,9 @@ class _dash_BoardState extends State<dash_Board> {
                           EasyLoading.showSuccess('Product Added Successfully');
 
                           setState() {
-                            _price.text = '';
-                            _name.text = '';
-                            _desc.text = '';
+                            price.text = '';
+                            name.text = '';
+                            desc.text = '';
                             imageUrl.clear();
                           }
 
@@ -558,11 +681,18 @@ class _dash_BoardState extends State<dash_Board> {
         .getDownloadURL();
   }
 
+  late ImageFile input; // set the input image file
+  Configuration config = Configuration(
+    outputType: ImageOutputType.webpThenJpg,
+    useJpgPngNativeCompressor: false,
+    quality: 40,
+  );
+
   void uploadToStorage() {
     final date = DateTime.now();
     final path = '${date.toString()}';
     EasyLoading.show();
-    uploadImage(onSelected: (file) {
+    uploadImage(onSelected: (file) async {
       EasyLoading.dismiss();
       FirebaseStorage.instance
           .refFromURL('gs://qbazar-19c41.appspot.com/products')

@@ -1,7 +1,6 @@
 import 'package:firebase_phone_auth_handler/firebase_phone_auth_handler.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:provider/provider.dart';
 import 'package:qb_admin/admin/admin_dash.dart';
 
 // ignore: must_be_immutable

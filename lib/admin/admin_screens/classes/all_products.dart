@@ -28,9 +28,53 @@ class ProductsDataSource extends DataGridSource {
                 maxLines: 10,
                 style: TextStyle(fontSize: 10),
               )),
-          DataGridCell<Widget>(columnName: 'category', value: Text(e.category)),
           DataGridCell<Widget>(
-              columnName: 'sub category', value: Text(e.subCategory)),
+              columnName: 'category',
+              value: InkWell(onTap: () {}, child: Text(e.category))),
+          DataGridCell<Widget>(
+              columnName: 'sub category',
+              value: InkWell(
+                  onTap: () {
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) {
+                          return AlertDialog(
+                            content: StatefulBuilder(
+                              builder:
+                                  (BuildContext context, StateSetter setState) {
+                                return FutureBuilder<Object>(
+                                    future: FirebaseFirestore.instance
+                                        .collection('subcategories')
+                                        .doc(e.uid)
+                                        .get(),
+                                    builder: (context, snapshot) {
+                                      if (!snapshot.hasData ||
+                                          snapshot.connectionState ==
+                                              ConnectionState.waiting) {
+                                        return Center(
+                                          child: SpinKitFadingCube(
+                                            color: Colors.blue,
+                                          ),
+                                        );
+                                      } else if (snapshot.hasData &&
+                                          snapshot.connectionState ==
+                                              ConnectionState.done) {
+                                        print(snapshot.data);
+                                        return Column(
+                                          children: [],
+                                        );
+                                      } else {
+                                        return Center(
+                                          child: CircularProgressIndicator(),
+                                        );
+                                      }
+                                    });
+                              },
+                            ),
+                          );
+                        });
+                  },
+                  child: Text(e.subCategory))),
           DataGridCell<Widget>(
               columnName: 'price',
               value: TextFormField(
