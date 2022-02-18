@@ -43,7 +43,7 @@ class Orders {
       customerDetails: snap['customerDetails'],
       total: snap['total'],
       subtotal: snap['subtotal'],
-      products: snap['product_id'],
+      products: snap['products_id'],
       status: snap['status'],
     );
     return orders;

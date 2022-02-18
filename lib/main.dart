@@ -6,6 +6,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 import 'package:qb_admin/blocs/luckydraw/luckydraw_bloc.dart';
+import 'package:qb_admin/blocs/orders/orders_bloc.dart';
 import 'package:qb_admin/blocs/products/products_bloc.dart';
 import 'package:qb_admin/repositories/banners/banners_repository.dart';
 import 'package:qb_admin/repositories/categories/category_repository.dart';
@@ -16,6 +17,7 @@ import 'blocs/banners/banners_bloc.dart';
 import 'blocs/category/category_bloc.dart';
 import 'blocs/subcategories/subcategory_bloc.dart';
 import 'config/app_router.dart';
+import 'repositories/orders/order_repository.dart';
 import 'repositories/product/product_repository.dart';
 import 'repositories/subcategories/subcategories_repository.dart';
 import 'services/AuthController.dart';
@@ -112,6 +114,9 @@ class _AdminState extends State<Admin> with WidgetsBindingObserver {
                 LuckyDrawRepository: LuckyDrawRepository(),
               )..add(LoadLuckyDraw()),
             ),
+            BlocProvider(
+                create: (_) => OrdersBloc(OrdersRepository: OrdersRepository())
+                  ..add(LoadOrders()))
           ],
           child: GetMaterialApp(
             locale: Get.deviceLocale,
