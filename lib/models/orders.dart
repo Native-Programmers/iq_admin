@@ -8,7 +8,7 @@ class Orders {
   String subtotal;
   String total;
   String deliveryFee;
-  String userId;
+  String orderId;
   String status;
 
   Orders(
@@ -19,11 +19,11 @@ class Orders {
       required this.products,
       required this.subtotal,
       required this.total,
-      required this.userId,
+      required this.orderId,
       required this.status});
   @override
   List<Object?> get props => [
-        userId,
+        orderId,
         total,
         subtotal,
         products,
@@ -36,7 +36,7 @@ class Orders {
 
   static Orders fromSnapshot(DocumentSnapshot snap) {
     Orders orders = Orders(
-      userId: snap.id,
+      orderId: snap.id,
       customerAddress: snap['customerAddress'],
       deliveryFee: snap['delivery'],
       customerEmail: snap['email'],
