@@ -130,10 +130,11 @@ class _admin_LoginState extends State<admin_Login> {
                         child: ElevatedButton(
                           onPressed: () {
                             Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        OTP(phone: dropdownValue)));
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => OTP(phone: dropdownValue),
+                              ),
+                            );
                             // Navigator.push(
                             //   context,
                             //   MaterialPageRoute(

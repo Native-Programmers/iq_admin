@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:qb_admin/admin/admin_screens/screens/all_orders.dart';
 
 import 'add_banners.dart';
@@ -48,7 +49,7 @@ class _DrawerState extends State<Drawers> {
                         builder: (context) => const Orders(),
                       ));
                 },
-                leading: const Icon(Icons.account_box),
+                leading: const Icon(FontAwesomeIcons.carAlt),
                 title: const Text('Order Information'),
                 focusColor: Colors.white,
                 enableFeedback: true,
@@ -68,7 +69,7 @@ class _DrawerState extends State<Drawers> {
                         builder: (context) => const Categories(),
                       ));
                 },
-                leading: const Icon(Icons.add_outlined),
+                leading: const Icon(Icons.category),
                 title: const Text('Categories'),
                 focusColor: Colors.white,
                 enableFeedback: true,
@@ -78,22 +79,6 @@ class _DrawerState extends State<Drawers> {
             const Divider(
               height: 2,
               color: Colors.transparent,
-            ),
-            Card(
-              child: ListTile(
-                onTap: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const UserData(),
-                      ));
-                },
-                leading: const Icon(Icons.airplay_sharp),
-                title: const Text('User Data'),
-                focusColor: Colors.white,
-                enableFeedback: true,
-                hoverColor: Colors.white,
-              ),
             ),
             const Divider(
               height: 2,
@@ -108,7 +93,7 @@ class _DrawerState extends State<Drawers> {
                         builder: (context) => const Banners(),
                       ));
                 },
-                leading: const Icon(Icons.add_outlined),
+                leading: const Icon(Icons.post_add_rounded),
                 title: const Text('Banners'),
                 focusColor: Colors.white,
                 enableFeedback: true,
